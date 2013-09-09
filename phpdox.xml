@@ -1,12 +1,12 @@
 <?xml version="1.0" ?>
 <phpdox xmlns="http://phpdox.de/config">
-    <project name="Keyworddensity checker" source="./src" workdir="build/phpdox">
+    <project name="Keyworddensity checker" source="./src" workdir="doc/phpdox">
         <collector publiconly="false">
             <include mask="*.php" />
             <exclude mask="*Autoload.php" />
         </collector>
 
-        <generator output="build">
+        <generator output="doc">
             <build engine="html" enabled="true" output="api"/>
         </generator>
     </project>
