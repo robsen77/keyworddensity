@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Keyworddensity Tool" default="build">
+    <target name="build" depends="vendors">
+    </target>
+
+    <target name="composer-check">
+        <available file="bin/composer.phar" property="composer.exists"/>
+    </target>
+
+    <target name="composer-install" description="Install composer.phar" unless="composer.exists">
+        <exec executable="bash" failonerror="true">
+            <arg value="-c"/>
+            <arg value="curl -sS https://getcomposer.org/installer | php -- --install-dir=bin"/>
+        </exec>
+    </target>
+
+    <target name="vendors" description="Install vendors" depends="composer-check, composer-install">
+        <exec executable="${basedir}/bin/composer.phar" failonerror="true">
+            <arg value="install" />
+        </exec>
+    </target>
+
+    <target name="clean" description="Cleanup build artifacts">
+        <delete includeemptydirs="true" quiet="true">
+            <fileset dir="${basedir}/build" includes="**/*"/>
+        </delete>
+    </target>
+
+    <target name="prepare" depends="clean" description="Prepare for build">
+        <mkdir dir="${basedir}/build" />
+        <mkdir dir="${basedir}/build/api"/>
+        <mkdir dir="${basedir}/build/code-browser"/>
+        <mkdir dir="${basedir}/build/coverage"/>
+        <mkdir dir="${basedir}/build/logs"/>
+        <mkdir dir="${basedir}/build/phpdox"/>
+    </target>
+
+    <target name="lint" description="Perform syntax check of sourcecode files">
+        <apply executable="php" failonerror="true">
+            <arg value="-l" />
+
+            <fileset dir="${basedir}/src">
+                <include name="**/*.php" />
+            </fileset>
+
+            <fileset dir="${basedir}/src/">
+                <include name="**/*Test.php" />
+            </fileset>
+        </apply>
+    </target>
+
+    <target name="phpdox" description="Generate API documentation using phpDox">
+        <exec executable="${basedir}/bin/phpdox">
+            <arg value="-f" />
+            <arg path="${basedir}/docs/phpdox.xml" />
+        </exec>
+    </target>
+
+    <target name="phpunit" description="Run unit tests with PHPUnit">
+        <exec executable="${basedir}/bin/phpunit" failonerror="true">
+            <arg value="-v" />
+            <arg value="-c" />
+            <arg path="${basedir}/tests/phpunit.xml" />
+        </exec>
+    </target>
+</project>
