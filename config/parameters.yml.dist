@@ -1,0 +1,21 @@
+parameters:
+    user_agents:
+        - {name: Google, agent: Googlebot/1.0 (googlebot@googlebot.com http://googlebot.com/)}
+    stop_words: >
+        ab aber ähnlich alle allein allem aller alles allg allgemein als also am an and andere anderes auch auf aus
+        außer been bei beim besonders bevor bietet bis bzw da dabei dadurch dafür daher dann daran darauf daraus das
+        daß dass davon davor dazu dem den denen denn dennoch der derem deren des deshalb die dies diese diesem diesen
+        dieser dieses doch dort durch eben ein eine einem einen einer eines einfach er es etc etwa etwas for für ganz
+        ganze ganzem ganzen ganzer ganzes gar gleich gute hat hinter ihm ihr ihre ihrem ihren ihrer ihres im in ist ja
+        je jede jedem jeden jeder jedes jene jenem jenen jener jenes jetzt kann kein keine keinem keinen keiner keines
+        kommen kommt können leicht machen man mehr mehrere meist mit muß nach neu neue neuem neuen neuer neues nicht
+        noch nur ob oder of ohne per schwierig sehr sein seinem seinen seiner seines seit selbst sich sie sind so sodaß
+        solch solche solchem solchen solcher solches sollte sollten soviel sowohl statt über um und uns unser unsere
+        unseren unseres unter viel viele vom von vor wann war was wenig wenige weniger wenn wer wie wieder wieviel wird
+        wirklich wo wurde wurden zu zum zur zwischen aber als am an auch auf aus bei bin bis bist da dadurch daher darum
+        das daß dass dein deine dem den der des dessen deshalb die dies dieser dieses dochdort du durch ein eine einem
+        einen einer eines er es euer eure für hatte hatten hattest hattet hier hinter ich ihr ihre im in ist ja jede
+        jedem jeden jeder jedes jener jenes jetzt kann kannst können könnt machen mein meine mit muß mußt musst müssen
+        müßt nach nachdem nein nicht nun oder seid sein seine sich sie sind soll sollen sollst sollt sonst soweit sowie
+        und unser unsere unter vom von vor wann warum was weiter weitere wenn wer werde werden werdet weshalb wie
+        wieder wieso wir wird wirst wo woher wohin zu zum zur über

@@ -1,5 +1,7 @@
 .idea
 .git
+phpunit.xml
+config/parameters.yml
 
 bin/
 build/

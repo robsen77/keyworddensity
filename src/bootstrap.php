@@ -12,7 +12,7 @@ function includeIfExists($file) {
     return file_exists($file) ? include $file : false;
 }
 
-$loader = includeIfExists(__DIR__.'/../vendor/autoload.php');
+$loader = includeIfExists(__DIR__ . '/../vendor/autoload.php');
 
 if ($loader === false) {
     echo 'You must set up the project dependencies, run the following commands:' . PHP_EOL.
