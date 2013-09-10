@@ -1,8 +1,7 @@
-.idea
-.git
-phpunit.xml
-config/parameters.yml
+/composer.lock
+/resources/cache/*
+/resources/log/*
+/vendor/
+/web/assets/*
 
-bin/
-build/
-vendor/
+composer.phar
