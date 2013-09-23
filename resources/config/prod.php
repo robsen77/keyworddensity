@@ -1,10 +1,10 @@
 <?php
 
 // Local
-$app['locale'] = 'fr';
+$app['locale'] = 'de';
 $app['session.default_locale'] = $app['locale'];
 $app['translator.messages'] = array(
-    'fr' => __DIR__.'/../resources/locales/fr.yml',
+    'de' => __DIR__.'/../resources/locales/de.yml',
 );
 
 // Cache
@@ -30,15 +30,3 @@ $app['assetic.input.path_to_js']        = array(
     $app['assetic.input.path_to_assets'] . '/js/script.js',
 );
 $app['assetic.output.path_to_js']       = 'js/scripts.js';
-
-// Doctrine (db)
-$app['db.options'] = array(
-    'driver'   => 'pdo_mysql',
-    'host'     => 'localhost',
-    'dbname'   => 'silex_kitchen',
-    'user'     => 'root',
-    'password' => '',
-);
-
-// User
-$app['security.users'] = array('username' => array('ROLE_USER', 'password'));
