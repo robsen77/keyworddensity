@@ -1,5 +1,5 @@
 <?php
-$stopwords = "ab aber ähnlich alle allein allem aller alles allg allgemein als also am an and andere anderes auch auf
+$app['stopwords'] = "ab aber ähnlich alle allein allem aller alles allg allgemein als also am an and andere anderes auch auf
 aus außer been bei beim besonders bevor bietet bis bzw da dabei dadurch dafür daher dann daran darauf daraus das daß
 dass davon davor dazu dem den denen denn dennoch der derem deren des deshalb die dies diese diesem diesen dieser dieses
 doch dort durch eben ein eine einem einen einer eines einfach er es etc etwa etwas for für ganz ganze ganzem ganzen

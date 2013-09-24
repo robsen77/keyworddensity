@@ -33,6 +33,13 @@ $app['translator'] = $app->share(
         }
     )
 );
+$app['keyworddensity.stopword_collection'] = $app->share(
+    function($app) {
+        require __DIR__.'/../resources/config/stopwords.php';
+        $stopwordLoader = new StopwordLoader($app['stopwords']);
+        return $stopwordLoader->getStopwordCollection();
+    }
+);
 
 $app->register(
     new MonologServiceProvider(),
