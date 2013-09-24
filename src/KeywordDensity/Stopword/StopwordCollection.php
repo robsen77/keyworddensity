@@ -2,43 +2,21 @@
 
 namespace KeywordDensity\Stopword;
 
-class StopwordCollection
+class StopwordCollection extends \SplObjectStorage
 {
-    /**
-     * StopwordItem Collection
-     * @var array
-     */
-    protected $stopwords = array();
-
-    public function add(StopwordItem $stopword) {
-        if($this->alreadyExists($stopword)) {
-            throw new StopwordCollectionException("could not add stopword, because the stopword already exists");
+    public function attach($object, $data = null) {
+        if($this->offsetExists($object)) {
+            throw new StopwordCollectionException("stopword already exists");
         }
 
-        $this->stopwords[] = $stopword;
-
-        return true;
+        parent::attach($object, $data);
     }
 
-    public function remove(StopwordItem $stopword) {
-        foreach($this->stopwords as $key => $stopwordRun) {
-            if($stopword === $stopwordRun) {
-                unset($this->stopwords[$key]);
-
-                return true;
-            }
+    public function detach($object) {
+        if(!$this->offsetExists($object)) {
+            throw new StopwordCollectionException("stopword doensn't exists");
         }
 
-        throw new StopwordCollectionException("could not remove stopword, because the stopword not exists");
-    }
-
-    protected function alreadyExists(StopwordItem $stopword) {
-        foreach($this->stopwords as $stopwordRun) {
-            if($stopword === $stopwordRun) {
-                return true;
-            }
-        }
-
-        return false;
+        parent::detach($object);
     }
 }

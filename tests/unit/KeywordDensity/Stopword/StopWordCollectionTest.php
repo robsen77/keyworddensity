@@ -11,14 +11,8 @@ class StopWordCollectionTest extends \PHPUnit_Framework_TestCase
         $stopwordItem = new StopwordItem("test");
 
         $stopwordCollection = new StopwordCollection();
-        $stopwordCollection->add($stopwordItem);
-        $stopwordCollection->add($stopwordItem);
-    }
-
-    public function testAddStopwordSuccess() {
-        $stopwordItem = new StopwordItem("test");
-        $stopwordCollection = new StopwordCollection();
-        $this->assertTrue($stopwordCollection->add($stopwordItem));
+        $stopwordCollection->attach($stopwordItem);
+        $stopwordCollection->attach($stopwordItem);
     }
 
     /**
@@ -27,13 +21,13 @@ class StopWordCollectionTest extends \PHPUnit_Framework_TestCase
     public function testRemoveNotExistentStopword() {
         $stopwordItem = new StopwordItem("test");
         $stopwordCollection = new StopwordCollection();
-        $stopwordCollection->remove($stopwordItem);
+        $stopwordCollection->detach($stopwordItem);
     }
 
     public function testRemoveStopwordSuccess() {
         $stopwordItem = new StopwordItem("test");
         $stopwordCollection = new StopwordCollection();
-        $stopwordCollection->add($stopwordItem);
-        $stopwordCollection->remove($stopwordItem);
+        $stopwordCollection->attach($stopwordItem);
+        $stopwordCollection->detach($stopwordItem);
     }
 }

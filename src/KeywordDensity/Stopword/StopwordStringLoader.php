@@ -16,7 +16,7 @@ class StopwordStringLoader
 
         foreach($stopwordArray as $stopword) {
             $stopwordItem = new StopwordItem($stopword);
-            $this->stopwordCollection->add($stopwordItem);
+            $this->stopwordCollection->attach($stopwordItem);
         }
     }
 

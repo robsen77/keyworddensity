@@ -10,13 +10,15 @@ class StopwordStringLoaderTest extends \PHPUnit_Framework_TestCase
     public function testLoadStopwordsByString() {
         $stopwordStringLoader = new StopwordStringLoader($this->stopwordString);
 
-        $stopwordCollection = new StopwordCollection();
+        $expectedCollection = new StopwordCollection();
 
         foreach(explode(" ", $this->stopwordString) as $stopword) {
             $stopwordItem = new StopwordItem($stopword);
-            $stopwordCollection->add($stopwordItem);
+            $expectedCollection->attach($stopwordItem);
         }
 
-        $this->assertEquals($stopwordCollection, $stopwordStringLoader->getCollection());
+        $actualCollection = $stopwordStringLoader->getCollection();
+
+        $this->assertEquals($expectedCollection->serialize(), $actualCollection->serialize());
     }
 }
