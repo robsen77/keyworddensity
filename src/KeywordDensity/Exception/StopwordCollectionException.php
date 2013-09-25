@@ -1,5 +1,5 @@
 <?php
-namespace KeywordDensity\Stopword;
+namespace KeywordDensity\Exception;
 
 
 class StopwordCollectionException extends \Exception

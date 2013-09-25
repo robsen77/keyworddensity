@@ -2,6 +2,8 @@
 namespace KeywordDensity\Stopword;
 
 
+use KeywordDensity\Exception\StopwordException;
+
 class StopwordItem
 {
     protected $stopword = "";

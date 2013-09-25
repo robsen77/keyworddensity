@@ -5,7 +5,7 @@ use \KeywordDensity\Stopword\StopwordItem;
 class StopWordCollectionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @expectedException \KeywordDensity\Stopword\StopwordCollectionException
+     * @expectedException \KeywordDensity\Exception\StopwordCollectionException
      */
     public function testSetStopwordTwiceFails() {
         $stopwordItem = new StopwordItem("test");
@@ -16,7 +16,7 @@ class StopWordCollectionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \KeywordDensity\Stopword\StopwordCollectionException
+     * @expectedException \KeywordDensity\Exception\StopwordCollectionException
      */
     public function testRemoveNotExistentStopword() {
         $stopwordItem = new StopwordItem("test");
