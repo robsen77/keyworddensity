@@ -16,7 +16,10 @@ class HostTest extends \PHPUnit_Framework_TestCase
      * @dataProvider urlDataProvider
      */
     public function testSeveralHostnames($url, $expected) {
-        $this->assertEquals($expected, $this->validator->validate($url));
+        $urlParser = new \KeywordDensity\Parser\Url();
+        $urlParser->parse($url);
+
+        $this->assertEquals($expected, $this->validator->validate($urlParser));
     }
 
     public function urlDataProvider() {

@@ -1,5 +1,6 @@
 <?php
 use KeywordDensity\Validator\Url\Protocol;
+use KeywordDensity\Parser\Url;
 
 class ProtocolTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,10 +13,25 @@ class ProtocolTest extends \PHPUnit_Framework_TestCase
         $this->validator = new Protocol();
     }
 
-    public function testProtocolIsHttpOrHttps() {
-        $this->assertTrue($this->validator->validate("http://www.somehostname.de"));
-        $this->assertTrue($this->validator->validate("https://www.somehostname.de"));
-        $this->assertFalse($this->validator->validate("www.somehostname.de"));
-        $this->assertFalse($this->validator->validate("ftp://www.somehostname.de"));
+    /**
+     * @dataProvider urlDataProvider
+     */
+    public function testProtocolIsHttpOrHttps($url, $expected) {
+        $urlParser = new Url();
+        $urlParser->parse($url);
+
+        $this->assertEquals($expected, $this->validator->validate($urlParser));
+    }
+
+    public function urlDataProvider() {
+        return array(
+            array("http://www.somehostname.de", true),
+            array("http://somehostname.de", true),
+            array("https://somehostname.de/?q=something", true),
+            array("https://some-host-name.de/?q=something", true),
+            array("sftp://some-host-name.de/?q=something", false),
+            array("http://172.0.0.1/?q=something", true),
+            array("ftp://172.0.0.1/?q=something", false),
+        );
     }
 }

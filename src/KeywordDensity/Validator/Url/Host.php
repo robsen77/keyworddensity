@@ -1,7 +1,9 @@
 <?php
 namespace KeywordDensity\Validator\Url;
 
-use KeywordDensity\Validator\Validator;
+use KeywordDensity\Parser\Url;
+use KeywordDensity\Validator\Url\Validator;
+use KeywordDensity\Parser\Url as UrlParser;
 
 class Host implements Validator
 {
@@ -9,28 +11,37 @@ class Host implements Validator
 //    const IPV6_PATTERN = "/^(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/";
 //    const IPV6_PATTERN_HEX_COMPRESSED = "/^((?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?)::((?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?)$/";
 
-    public function validate($param) {
-        $host = $this->getHost($param);
+    /**
+     * @var Url
+     */
+    private $urlParser;
 
-        if($this->isIpAddress($host) && !$this->isValidIpAddress($host)) {
+    /**
+     * @var string
+     */
+    private $host;
+
+    public function validate(Url $urlParser) {
+        $this->urlParser = $urlParser;
+        $this->host = $this->getHost();
+
+        if($this->isIpAddress() && !$this->isValidIpAddress()) {
             return false;
         }
 
-        return $this->containsValidToken($host);
+        return $this->containsValidToken();
     }
 
-    private function getHost($url) {
-        $parseUrl = parse_url($url);
-
-        return isset($parseUrl['host']) ? $parseUrl['host'] : null;
+    private function getHost() {
+        return $this->urlParser->getHost();
     }
 
-    private function containsValidToken($host) {
-        return !preg_match("/[^a-z\d.\-]{1,}/i", $host);
+    private function containsValidToken() {
+        return !preg_match("/[^a-z\d.\-]{1,}/i", $this->host);
     }
 
-    private function isIpAddress($host) {
-        return !preg_match("/[^\d.]/", $host);
+    private function isIpAddress() {
+        return !preg_match("/[^\d.]/", $this->host);
     }
 
     /**
@@ -38,8 +49,8 @@ class Host implements Validator
      * @return int
      * @todo IPV6 validation
      */
-    private function isValidIpAddress($host) {
-        return preg_match(self::IPV4_PATTERN, $host);
+    private function isValidIpAddress() {
+        return preg_match(self::IPV4_PATTERN, $this->host);
 //        || preg_match(self::IPV6_PATTERN, $host)
 //        || preg_match(self::IPV6_PATTERN_HEX_COMPRESSED, $host);
     }

@@ -28,6 +28,7 @@ class UrlValidatorTest extends \PHPUnit_Framework_TestCase
             array("http://google.de"),
             array("http://www.google.de/#q=wefwefwef"),
             array("http://www.google.de/?somequerystring=test;+%20"),
+            array("http::/www.google.de/?somequerystring=test;+%20"),
         );
     }
 
@@ -44,7 +45,6 @@ class UrlValidatorTest extends \PHPUnit_Framework_TestCase
             array("htp://www.google.de"),
             array("google.de"),
             array("www.google.de/#q=wefwefwef"),
-            array("http::/www.google.de/?somequerystring=test;+%20"),
         );
     }
 }

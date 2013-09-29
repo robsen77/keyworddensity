@@ -1,10 +1,15 @@
 <?php
 namespace KeywordDensity\Validator;
 
+use KeywordDensity\Parser\Url as UrlParser;
+use KeywordDensity\Validator\Url\Validator;
 use KeywordDensity\Validator\ValidatorChain;
 
 class UrlValidator
 {
+    /**
+     * @var ValidatorChain
+     */
     private $validatorChain;
 
     public function __construct() {
@@ -16,6 +21,9 @@ class UrlValidator
     }
 
     public function validate($url) {
-        return $this->validatorChain->validate($url);
+        $urlParser = new UrlParser();
+        $urlParser->parse($url);
+
+        return $this->validatorChain->validate($urlParser);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-use KeywordDensity\Validator\Validator;
+use KeywordDensity\Validator\Url\Validator;
 use KeywordDensity\Validator\ValidatorChain;
 
 class ValidatorChainTest extends \PHPUnit_Framework_TestCase
