@@ -42,7 +42,7 @@
     },
     "autoload": {
         "psr-0": {
-            "KeywordDensity": "src/"
+            "Robsen77\\": "src/"
         }
     }
 }
