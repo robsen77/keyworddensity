@@ -8,21 +8,24 @@ class HostTest extends \PHPUnit_Framework_TestCase
      */
     protected $validator;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->validator = new Host();
     }
 
     /**
      * @dataProvider urlDataProvider
      */
-    public function testSeveralHostnames($url, $expected) {
+    public function testSeveralHostnames($url, $expected)
+    {
         $urlParser = new \KeywordDensity\Parser\Url();
         $urlParser->parse($url);
 
         $this->assertEquals($expected, $this->validator->validate($urlParser));
     }
 
-    public function urlDataProvider() {
+    public function urlDataProvider()
+    {
         return array(
             array("http://www.somehostname.de", true),
             array("http://somehostname.de", true),

@@ -15,8 +15,9 @@ class StopwordCollection extends \SplObjectStorage
      * @param null $data
      * @throws StopwordCollectionException
      */
-    public function attach($object, $data = null) {
-        if($this->offsetExists($object)) {
+    public function attach($object, $data = null)
+    {
+        if ($this->offsetExists($object)) {
             throw new StopwordCollectionException("stopword already exists");
         }
 
@@ -27,8 +28,9 @@ class StopwordCollection extends \SplObjectStorage
      * @param object $object
      * @throws StopwordCollectionException
      */
-    public function detach($object) {
-        if(!$this->offsetExists($object)) {
+    public function detach($object)
+    {
+        if (!$this->offsetExists($object)) {
             throw new StopwordCollectionException("stopword doensn't exists");
         }
 

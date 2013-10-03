@@ -6,14 +6,16 @@ class UrlTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider schemeDataProvider
      */
-    public function testParsedScheme($url, $expectedScheme) {
+    public function testParsedScheme($url, $expectedScheme)
+    {
         $urlParser = new Url();
         $urlParser->parse($url);
 
         $this->assertEquals($expectedScheme, $urlParser->getScheme());
     }
 
-    public function schemeDataProvider() {
+    public function schemeDataProvider()
+    {
         return array(
             array("http://www.somehost.de", "http"),
             array("https://www.somehost.de", "https"),
@@ -26,14 +28,16 @@ class UrlTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider hostDataProvider
      */
-    public function testParsedHost($url, $expectedHost) {
+    public function testParsedHost($url, $expectedHost)
+    {
         $urlParser = new Url();
         $urlParser->parse($url);
 
         $this->assertEquals($expectedHost, $urlParser->getHost());
     }
 
-    public function hostDataProvider() {
+    public function hostDataProvider()
+    {
         return array(
             array("http://www.somehost1.de", "www.somehost1.de"),
             array("https://www.somehost2.de", "www.somehost2.de"),
@@ -47,14 +51,16 @@ class UrlTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider portDataProvider
      */
-    public function testParsedPort($url, $expectedPort) {
+    public function testParsedPort($url, $expectedPort)
+    {
         $urlParser = new Url();
         $urlParser->parse($url);
 
         $this->assertEquals($expectedPort, $urlParser->getPort());
     }
 
-    public function portDataProvider() {
+    public function portDataProvider()
+    {
         return array(
             array("http://www.somehost1.de", ""),
             array("http://www.somehost1.de:80", 80),
@@ -67,23 +73,29 @@ class UrlTest extends PHPUnit_Framework_TestCase
             array("://somehost6.de", ""),
         );
     }
+
     /**
      * @dataProvider pathDataProvider
      */
-    public function testParsedPath($url, $expectedPath) {
+    public function testParsedPath($url, $expectedPath)
+    {
         $urlParser = new Url();
         $urlParser->parse($url);
 
         $this->assertEquals($expectedPath, $urlParser->getPath());
     }
 
-    public function pathDataProvider() {
+    public function pathDataProvider()
+    {
         return array(
             array("http://www.somehost.de", ""),
             array("http://www.somehost.de/", "/"),
             array("http://www.somehost.de/somepath", "/somepath"),
             array("http://www.somehost.de/somepath/longer/deeper/stronger", "/somepath/longer/deeper/stronger"),
-            array("http://www.somehost.de/somepath/longer/deeper/stronger/some_script.php", "/somepath/longer/deeper/stronger/some_script.php"),
+            array(
+                "http://www.somehost.de/somepath/longer/deeper/stronger/some_script.php",
+                "/somepath/longer/deeper/stronger/some_script.php"
+            ),
             array("https://www.somehost.de", ""),
             array("://somehost.de", "://somehost.de"),
         );

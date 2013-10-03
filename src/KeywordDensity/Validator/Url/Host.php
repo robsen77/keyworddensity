@@ -3,7 +3,6 @@ namespace KeywordDensity\Validator\Url;
 
 use KeywordDensity\Parser\Url;
 use KeywordDensity\Validator\Url\Validator;
-use KeywordDensity\Parser\Url as UrlParser;
 
 class Host implements Validator
 {
@@ -21,26 +20,30 @@ class Host implements Validator
      */
     private $host;
 
-    public function validate(Url $urlParser) {
+    public function validate(Url $urlParser)
+    {
         $this->urlParser = $urlParser;
         $this->host = $this->getHost();
 
-        if($this->isIpAddress() && !$this->isValidIpAddress()) {
+        if ($this->isIpAddress() && !$this->isValidIpAddress()) {
             return false;
         }
 
         return $this->containsValidToken();
     }
 
-    private function getHost() {
+    private function getHost()
+    {
         return $this->urlParser->getHost();
     }
 
-    private function containsValidToken() {
+    private function containsValidToken()
+    {
         return !preg_match("/[^a-z\d.\-]{1,}/i", $this->host);
     }
 
-    private function isIpAddress() {
+    private function isIpAddress()
+    {
         return !preg_match("/[^\d.]/", $this->host);
     }
 
@@ -49,7 +52,8 @@ class Host implements Validator
      * @return int
      * @todo IPV6 validation
      */
-    private function isValidIpAddress() {
+    private function isValidIpAddress()
+    {
         return preg_match(self::IPV4_PATTERN, $this->host);
 //        || preg_match(self::IPV6_PATTERN, $host)
 //        || preg_match(self::IPV6_PATTERN_HEX_COMPRESSED, $host);

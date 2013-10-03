@@ -16,7 +16,8 @@ class Protocol implements Validator
      */
     private $scheme;
 
-    public function validate(Url $urlParser) {
+    public function validate(Url $urlParser)
+    {
         $this->urlParser = $urlParser;
 
         $this->scheme = $this->urlParser->getScheme();
@@ -24,11 +25,13 @@ class Protocol implements Validator
         return $this->isHttp() || $this->isHttps();
     }
 
-    private function isHttp() {
+    private function isHttp()
+    {
         return substr($this->scheme, 0, 7) === "http";
     }
 
-    private function isHttps() {
+    private function isHttps()
+    {
         return substr($this->scheme, 0, 8) === "https";
     }
 }

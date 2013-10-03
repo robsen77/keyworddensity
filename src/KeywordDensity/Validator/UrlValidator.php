@@ -12,15 +12,18 @@ class UrlValidator
      */
     private $validatorChain;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->validatorChain = new ValidatorChain();
     }
 
-    public function setValidator(Validator $validator) {
+    public function setValidator(Validator $validator)
+    {
         $this->validatorChain->attach($validator);
     }
 
-    public function validate($url) {
+    public function validate($url)
+    {
         $urlParser = new UrlParser();
         $urlParser->parse($url);
 

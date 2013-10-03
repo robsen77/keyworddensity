@@ -9,7 +9,8 @@ class UrlValidatorTest extends \PHPUnit_Framework_TestCase
      */
     private $urlValidator;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->urlValidator = new UrlValidator();
         $this->urlValidator->setValidator(new Protocol());
     }
@@ -18,11 +19,13 @@ class UrlValidatorTest extends \PHPUnit_Framework_TestCase
      * @dataProvider positiveUrlDataProvider
      * @group integration
      */
-    public function testPositiveUrls($url) {
+    public function testPositiveUrls($url)
+    {
         $this->assertTrue($this->urlValidator->validate($url));
     }
 
-    public function positiveUrlDataProvider() {
+    public function positiveUrlDataProvider()
+    {
         return array(
             array("http://www.google.de"),
             array("http://google.de"),
@@ -36,11 +39,13 @@ class UrlValidatorTest extends \PHPUnit_Framework_TestCase
      * @dataProvider negativeUrlDataProvider
      * @group integration
      */
-    public function testNegativeUrls($url) {
+    public function testNegativeUrls($url)
+    {
         $this->assertFalse($this->urlValidator->validate($url));
     }
 
-    public function negativeUrlDataProvider() {
+    public function negativeUrlDataProvider()
+    {
         return array(
             array("htp://www.google.de"),
             array("google.de"),

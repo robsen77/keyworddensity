@@ -1,5 +1,6 @@
 <?php
 namespace KeywordDensity\Validator\Url;
+
 use KeywordDensity\Parser\Url;
 
 interface Validator

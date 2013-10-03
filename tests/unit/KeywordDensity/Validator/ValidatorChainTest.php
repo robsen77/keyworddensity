@@ -10,18 +10,21 @@ class ValidatorChainTest extends \PHPUnit_Framework_TestCase
     private $chain;
     private $testParam = "Dummy";
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->chain = new ValidatorChain();
-        for($x = 0; $x < 3; $x++) {
+        for ($x = 0; $x < 3; $x++) {
             $this->chain->attach($this->getMockedValidator(true));
         }
     }
 
-    public function testChainSuccess() {
+    public function testChainSuccess()
+    {
         $this->assertTrue($this->chain->validate($this->testParam));
     }
 
-    public function testChainFirstValidatorFails() {
+    public function testChainFirstValidatorFails()
+    {
         $chain = new ValidatorChain();
         $chain->attach($this->getMockedValidator(false));
         $chain->addAll($this->chain);
@@ -29,12 +32,14 @@ class ValidatorChainTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($chain->validate($this->testParam));
     }
 
-    public function testChainLastValidatorFails() {
+    public function testChainLastValidatorFails()
+    {
         $this->chain->attach($this->getMockedValidator(false));
         $this->assertFalse($this->chain->validate($this->testParam));
     }
 
-    private function getMockedValidator($returnValue = true) {
+    private function getMockedValidator($returnValue = true)
+    {
         $instance = $this->getMock('Validator', array("validate"));
         $instance->expects($this->any())
             ->method('validate')

@@ -7,7 +7,8 @@ class StopWordCollectionTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \KeywordDensity\Exception\StopwordCollectionException
      */
-    public function testSetStopwordTwiceFails() {
+    public function testSetStopwordTwiceFails()
+    {
         $stopwordItem = new StopwordItem("test");
 
         $stopwordCollection = new StopwordCollection();
@@ -18,13 +19,15 @@ class StopWordCollectionTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \KeywordDensity\Exception\StopwordCollectionException
      */
-    public function testRemoveNotExistentStopword() {
+    public function testRemoveNotExistentStopword()
+    {
         $stopwordItem = new StopwordItem("test");
         $stopwordCollection = new StopwordCollection();
         $stopwordCollection->detach($stopwordItem);
     }
 
-    public function testRemoveStopwordSuccess() {
+    public function testRemoveStopwordSuccess()
+    {
         $stopwordItem = new StopwordItem("test");
         $stopwordCollection = new StopwordCollection();
         $stopwordCollection->attach($stopwordItem);

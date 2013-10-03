@@ -10,21 +10,24 @@ class PathTest extends \PHPUnit_Framework_TestCase
      */
     private $validator;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->validator = new Path();
     }
 
     /**
      * @dataProvider validSignsDataProvider
      */
-    public function testPathContainsOnlyValidSigns($url, $expected) {
+    public function testPathContainsOnlyValidSigns($url, $expected)
+    {
         $urlParser = new Url();
         $urlParser->parse($url);
 
         $this->assertEquals($expected, $this->validator->validate($urlParser));
     }
 
-    public function validSignsDataProvider() {
+    public function validSignsDataProvider()
+    {
         return array(
             array("http://www.somehostname.de", true),
             array("http://somehostname.de", true),

@@ -9,22 +9,25 @@ class StopwordStringLoader
      */
     protected $stopwordCollection;
 
-    public function __construct($stopwordString) {
+    public function __construct($stopwordString)
+    {
         $stopwordArray = $this->toArray($stopwordString);
 
         $this->stopwordCollection = new StopwordCollection();
 
-        foreach($stopwordArray as $stopword) {
+        foreach ($stopwordArray as $stopword) {
             $stopwordItem = new StopwordItem($stopword);
             $this->stopwordCollection->attach($stopwordItem);
         }
     }
 
-    public function getCollection() {
+    public function getCollection()
+    {
         return $this->stopwordCollection;
     }
 
-    protected function toArray($stopwordString) {
+    protected function toArray($stopwordString)
+    {
         $stopwordString = $this->removeCarriageReturn($stopwordString);
         $stopwordString = $this->replaceNewlineBySpace($stopwordString);
         $stopwordString = $this->replaceMultispace($stopwordString);
@@ -32,19 +35,23 @@ class StopwordStringLoader
         return $this->splitBySpace($stopwordString);
     }
 
-    protected function removeCarriageReturn($stopwordString) {
+    protected function removeCarriageReturn($stopwordString)
+    {
         return str_replace("\r", "", $stopwordString);
     }
 
-    protected function replaceNewlineBySpace($stopwordString) {
+    protected function replaceNewlineBySpace($stopwordString)
+    {
         return str_replace("\n", " ", $stopwordString);
     }
 
-    protected function replaceMultispace($stopwordString) {
+    protected function replaceMultispace($stopwordString)
+    {
         return preg_replace("/\s{2,}/", " ", $stopwordString);
     }
 
-    protected function splitBySpace($stopwordString) {
+    protected function splitBySpace($stopwordString)
+    {
         return explode(" ", $stopwordString);
     }
 }

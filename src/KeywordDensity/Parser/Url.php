@@ -29,7 +29,8 @@ class Url implements Parser
     private $query;
     private $fragment;
 
-    public function parse($url) {
+    public function parse($url)
+    {
         $this->url = $url;
         $this->parsedUrl = parse_url($url);
 
@@ -41,17 +42,19 @@ class Url implements Parser
         $this->extractFragment();
     }
 
-    public function __get($property) {
+    public function __get($property)
+    {
         return $this->$property;
     }
 
-    public function __call($method, $params) {
-        if(strpos($method, "extract") === 0) {
+    public function __call($method, $params)
+    {
+        if (strpos($method, "extract") === 0) {
             $key = strtolower(str_replace("extract", "", $method));
             return $this->extractValue($key);
         }
 
-        if(strpos($method, "get") === 0) {
+        if (strpos($method, "get") === 0) {
             $key = strtolower(str_replace("get", "", $method));
             return $this->__get($key);
         }
@@ -59,10 +62,11 @@ class Url implements Parser
         return false;
     }
 
-    private function extractValue($key) {
+    private function extractValue($key)
+    {
         $this->$key = "";
 
-        if(isset($this->parsedUrl[$key])) {
+        if (isset($this->parsedUrl[$key])) {
             $this->$key = $this->parsedUrl[$key];
             return true;
         }
